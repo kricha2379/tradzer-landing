@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Redirecting to Tradzer…</title>
+<meta name="robots" content="noindex">
+</head>
+<body style="font-family: sans-serif; background:#0d1117; color:#e6edf3; display:flex; align-items:center; justify-content:center; height:100vh; margin:0;">
+<p>Redirecting you back to Tradzer…</p>
+<script>
+  // Supabase appends the recovery session to THIS page's URL as a fragment
+  // (the #part). A fragment is only ever visible to client-side JavaScript,
+  // never sent to any server -- so this plain, unsandboxed static page is
+  // what reads it and hands it to the Streamlit app as a normal ?query
+  // string instead, which server-side Python CAN read. This page must stay
+  // a plain top-level page (not embedded in an iframe anywhere) for the
+  // redirect below to be allowed to run at all.
+  var hash = window.location.hash;
+  var target = "https://tradzer.streamlit.app/";
+  if (hash && hash.length > 1) {
+    var params = new URLSearchParams(hash.substring(1));
+    target += "?" + params.toString();
+  }
+  window.location.replace(target);
+</script>
+</body>
+</html>
